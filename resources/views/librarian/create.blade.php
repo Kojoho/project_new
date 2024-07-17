@@ -9,27 +9,39 @@
         form {
             width: 500px;
             margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
         }
 
         input, select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ddd;
+            border-radius: 4px;
             box-sizing: border-box;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 
@@ -46,20 +58,19 @@
             <label for="category">หมวดหมู่:</label>
             <select id="category" name="category" required>
                 <option value="">เลือกหมวดหมู่</option>
-                <option value="การ์ตูน">หนังสือการเรียนคณิตศาสตร์</option>
+                <option value="การ์ตูน">การ์ตูน</option>
                 <option value="นวนิยาย">นวนิยาย</option>
                 <option value="สารคดี">สารคดี</option>
-                <option value="การ์ตูน">การ์ตูน</option>
-                <option value=" วรรณกรรม"> วรรณกรรม</option>
-                <option value=" จิตวิทยา"> จิตวิทยา</option>
-                <option value=" แม่และเด็ก">แม่และเด็ก</option>
-                <option value="บริหาร ธุรกิจ">บริหาร ธุรกิจ</option>
+                <option value="วรรณกรรม">วรรณกรรม</option>
+                <option value="จิตวิทยา">จิตวิทยา</option>
+                <option value="แม่และเด็ก">แม่และเด็ก</option>
+                <option value="บริหารธุรกิจ">บริหารธุรกิจ</option>
                 <option value="อื่นๆ">อื่นๆ</option>    
             </select>
 
             <label for="coverImage">รูปปกหนังสือ:</label>
-            <input type="file" id="coverImage" name="coverImage" accept="image/*">
-            <br><br> 
+            <input type="file" id="coverImage" name="coverImage" accept="image/*" required>
+
             <button type="submit">เพิ่มข้อมูล</button>
         </form>
     </div>
@@ -88,7 +99,7 @@
             formData.append('category', category);
             formData.append('coverImage', coverImage);
 
-            // Submit the form data using Fetch API or XMLHttpRequest
+            // Submit the form data using Fetch API
             fetch('{{ route('store.book') }}', {
                 method: 'POST',
                 body: formData,

@@ -32,4 +32,22 @@
             </div>
         </div>
     </div>
+    
+    <style>
+        table {
+            border-collapse: collapse; /* รวมเส้นขอบ */
+            width: 100%; /* ความกว้างเต็ม */
+        }
+        th, td {
+            padding: 12px; /* เว้นระยะภายใน */
+            text-align: left; /* จัดแนวซ้าย */
+        }
+        th {
+            background-color: #f3f4f6; /* สีพื้นหลังหัวตาราง */
+            font-weight: bold; /* ตัวหนา */
+        }
+        tr:hover {
+            background-color: #f1f5f9; /* สีพื้นหลังเมื่อเลื่อนเมาส์ */
+        }
+    </style>
 </x-app-layout>

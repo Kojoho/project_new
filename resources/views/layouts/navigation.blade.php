@@ -106,10 +106,37 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if (Auth()->user() && Auth()->user()->usertype == 'user')
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('รายการหนังสือ') }}
             </x-responsive-nav-link>
-        </div>
+            <x-responsive-nav-link :href="route('borrow.history')" :active="request()->routeIs('borrow.history')">
+                {{ __('ประวัติการยืมคืน') }}
+            </x-responsive-nav-link>
+        @endif
+
+
+        @if (Auth()->user() && Auth()->user()->usertype == 'admin')
+            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                {{ __('Admin') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('admin.user.logs')" :active="request()->routeIs('admin.user.logs')">
+                {{ __('Log') }}
+            </x-responsive-nav-link>
+        @endif
+        @if (Auth()->user() && Auth()->user()->usertype == 'librarian')
+            <x-responsive-nav-link :href="route('librarian.dashboard')" :active="request()->routeIs('librarian.dashboard')">
+                {{ __('librarian') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('librarian.create')" :active="request()->routeIs('librarian.create')">
+                {{ __('เพิ่มหนังสือ') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('librarian.borrow.history')" :active="request()->routeIs('librarian.borrow.history')">
+                {{ __('ประวัติการยืมคืน') }}
+            </x-responsive-nav-link>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
